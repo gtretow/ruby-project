@@ -65,6 +65,6 @@ class UniversitySubjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def university_subject_params
-      params.require(:university_subject).permit(:name, :coordinator, :bimester, :grade, :comment)
+      params.require(:university_subject).permit(:name, :coordinator, :bimester, :grade, :comment, :professor_id, :student_code)
     end
 end

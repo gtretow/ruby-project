@@ -11,32 +11,31 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="field form-group w-25">
+    <%= form.text_field :name, class: "form-control", placeholder:"Nome do aluno" %>
+  </div>
+
+  <div class="field form-group w-25">
+    <%= form.text_field :coordinator, class: "form-control", placeholder:"Responsável por aplicar a prova" %>
+  </div>
+
+  <div class="field form-group w-25">
+    <%= form.text_field :bimester, class: "form-control", placeholder: "Bimestre" %>
+  </div>
+
+  <div class="field form-group w-25">
+    <%= form.text_field :grade, class: "form-control", placeholder: "Nota" %>
+  </div>
+
+  <div class="field form-group w-25">
+    <%= form.text_area :comment, class: "form-control", placeholder: "Comentário" %>
+  </div>
+
+  <div class="field form-group w-25">
+    <%= form.number_field :professor_id, id: :university_subject_professor_id, class: "form-control", value: current_user.id, type: :hidden  %>
   </div>
 
   <div>
-    <%= form.label :coordinator, style: "display: block" %>
-    <%= form.text_field :coordinator %>
-  </div>
-
-  <div>
-    <%= form.label :bimester, style: "display: block" %>
-    <%= form.text_field :bimester %>
-  </div>
-
-  <div>
-    <%= form.label :grade, style: "display: block" %>
-    <%= form.text_field :grade %>
-  </div>
-
-  <div>
-    <%= form.label :comment, style: "display: block" %>
-    <%= form.text_field :comment %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= form.submit 'Criar Nova Nota', class: 'btn btn-secondary' %>
   </div>
 <% end %>
