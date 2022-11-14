@@ -5,18 +5,40 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
         <li class="nav-item">
-            <%= link_to "Home", root_path, class: "nav-link"%>
+          <%= link_to "Home", root_path, class: "nav-link"%>
         </li>
-    
+
+        <% if student_signed_in? || professor_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Sair", destroy_student_session_path, method: :delete, class: "nav-link"%>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "Editar Perfil", edit_student_registration_path, class: "nav-link"%>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "Ver Notas", university_subjects_path, class: "nav-link" %>
+          </li>
+          
+          <li class="nav-item">
+            <%= link_to "Lançar nova nota", new_university_subject_path, class: "nav-link" %>
+          </li>
+
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Cadastrar", new_student_registration_path, class: "nav-link"%>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Conectar", new_student_session_path, class: "nav-link"%>
+          </li>
+        <% end %>
+        <li class="nav-item">
+          <%= link_to "Acessar como Professor", new_professor_session_path, class: "nav-link"%>
+        </li>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
     </div>
   </div>
 </nav>
