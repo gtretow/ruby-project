@@ -1,12 +1,19 @@
-<p style="color: green"><%= notice %></p>
+<table class="table table-striped table-bordered table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>RA do Aluno</th>
+      <th>Responsável</th>
+      <th>Bimestre</th>
+      <th>Nota</th>
+      <th>Comentário </th>
+      <th> </th>
+    </tr>
+  </thead>
 
-<h1>Notas de Alunos</h1>
-
-<div id="university_subjects">
-  <% @university_subjects.each do |university_subject| %>
-    <%= render university_subject %>
-    <p>
-      <%= link_to "Show this university subject", university_subject %>
-    </p>
-  <% end %>
-</div>
+  <tbody id="university_subjects">
+    <% @university_subjects.each do |university_subject| %>
+      <tr></tr>
+        <%= render university_subject %>
+      <% end %>
+  </tbody>
+</table>

@@ -1,27 +1,37 @@
 <div id="<%= dom_id university_subject %>">
-  <p>
-    <strong>Name:</strong>
-    <%= university_subject.name %>
-  </p>
+  <td>
+    <%= university_subject.student_code %>
+  </td>
 
-  <p>
-    <strong>Coordinator:</strong>
+  <td>
     <%= university_subject.coordinator %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Bimester:</strong>
+  <td>
     <%= university_subject.bimester %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Grade:</strong>
+  <td>
     <%= university_subject.grade %>
-  </p>
+  </td>
 
-  <p>
-    <strong>Comment:</strong>
+  <td>
     <%= university_subject.comment %>
-  </p>
+  </td>
 
+  <td>
+    <%= link_to 'Exibir', university_subject %>
+  </td>
+
+  <% if university_subject.user == current_user %>
+    <td>
+      <%= link_to 'Editar', edit_university_subject_path(university_subject) %>
+    </td>
+    <div>
+      <%= link_to 'Deletar', university_subject, method: :delete, data: { confirm: "Tem certeza que deseja deletar esta nota?" } %>
+    </td>
+  <% else %>
+    <td></td>
+    <td></td>
+  <% end %>
 </div>

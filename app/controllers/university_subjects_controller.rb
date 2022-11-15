@@ -1,5 +1,7 @@
 class UniversitySubjectsController < ApplicationController
   before_action :set_university_subject, only: %i[ show edit update destroy ]
+  before_action :authenticate_professor!, except: [:index, :show]
+  before_action :correct_professor, only: [:edit, :update, :destroy]
 
   # GET /university_subjects or /university_subjects.json
   def index
@@ -12,7 +14,8 @@ class UniversitySubjectsController < ApplicationController
 
   # GET /university_subjects/new
   def new
-    @university_subject = UniversitySubject.new
+    #@university_subject = UniversitySubject.new
+    @university_subject = current_professor.university_subject.build
   end
 
   # GET /university_subjects/1/edit
@@ -21,11 +24,12 @@ class UniversitySubjectsController < ApplicationController
 
   # POST /university_subjects or /university_subjects.json
   def create
-    @university_subject = UniversitySubject.new(university_subject_params)
+    #@university_subject = UniversitySubject.new(university_subject_params)
+    @university_subject = current_professor.university_subject.build(university_subject_params)
 
     respond_to do |format|
       if @university_subject.save
-        format.html { redirect_to university_subject_url(@university_subject), notice: "University subject was successfully created." }
+        format.html { redirect_to university_subject_url(@university_subject), notice: "Nota criada com sucesso!" }
         format.json { render :show, status: :created, location: @university_subject }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +42,7 @@ class UniversitySubjectsController < ApplicationController
   def update
     respond_to do |format|
       if @university_subject.update(university_subject_params)
-        format.html { redirect_to university_subject_url(@university_subject), notice: "University subject was successfully updated." }
+        format.html { redirect_to university_subject_url(@university_subject), notice: "A nota foi atualizada com sucesso!" }
         format.json { render :show, status: :ok, location: @university_subject }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,9 +56,14 @@ class UniversitySubjectsController < ApplicationController
     @university_subject.destroy
 
     respond_to do |format|
-      format.html { redirect_to university_subjects_url, notice: "University subject was successfully destroyed." }
+      format.html { redirect_to university_subjects_url, notice: "Nota deletada com sucesso!" }
       format.json { head :no_content }
     end
+  end
+
+  def correct_user
+    @universitySubject = current_professor.university_subjects.find_by(id: params[:id])
+    redirect_to university_subjecs, notice: "Não autorizado a editar esta nota" if @universitySubject.nil?
   end
 
   private
@@ -65,6 +74,6 @@ class UniversitySubjectsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def university_subject_params
-      params.require(:university_subject).permit(:name, :coordinator, :bimester, :grade, :comment, :professor_id, :student_code)
+      params.require(:university_subject).permit(:student_code, :coordinator, :bimester, :grade, :comment, :professor_id, :student_code)
     end
 end

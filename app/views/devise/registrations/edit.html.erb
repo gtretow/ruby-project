@@ -1,43 +1,36 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<h2>Editar <%= resource_name.to_s.humanize == "Student"? "Aluno" : "Professor" %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class="field  form-group w-25">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <div class="field  form-group w-25">
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "Nova Senha" %>
     <% if @minimum_password_length %>
       <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
     <% end %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="field  form-group w-25">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Repetir Nova Senha" %>
   </div>
 
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+  <div class="field  form-group w-25">
+    <%= f.password_field :current_password, autocomplete: "current-password", placeholder: "Senha Atual" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Update" %>
+  <div class="actions mb-5 ">
+    <%= f.submit "Atualizar", class: "btn btn-secondary" %>
   </div>
 <% end %>
 
 <h3>Desativar Conta</h3>
 
- <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: "btn btn-secondary" method: :delete %>
-
-<%= link_to "Back", :back %>
+ <%= button_to "Desativar", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: "btn btn-secondary", method: :delete %>

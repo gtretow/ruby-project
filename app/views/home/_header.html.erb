@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark" >
   <div class="container-fluid">
-    <%= link_to 'Ruby App', root_path, class:"navbar-brand" %>
+    <%= link_to 'Faculdade ABC', root_path, class:"navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -11,7 +11,6 @@
         </li>
 
         <% if student_signed_in? || professor_signed_in? %>
-
           <li class="nav-item">
             <%= link_to "Editar Perfil", edit_student_registration_path, class: "nav-link"%>
           </li>
@@ -19,17 +18,11 @@
           <li class="nav-item">
             <%= link_to "Ver Notas", university_subjects_path, class: "nav-link" %>
           </li>
-          
-          <li class="nav-item">
-            <%= link_to "Lançar nova nota", new_university_subject_path, class: "nav-link" %>
-          </li>
 
           <li class="nav-item">
             <%= link_to "Sair", destroy_student_session_path, method: :delete, class: "nav-link"%>
           </li>
-
         <% else %>
-
           <li class="nav-item">
             <%= link_to "Cadastrar", new_student_registration_path, class: "nav-link"%>
           </li>
@@ -41,7 +34,12 @@
           <li class="nav-item">
           <%= link_to "Acessar como Professor", new_professor_session_path, class: "nav-link"%>
           </li>
+        <% end %>
 
+        <% if professor_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Lançar nova nota", new_university_subject_path, class: "nav-link" %>
+          </li>
         <% end %>
       </ul>
     </div>
