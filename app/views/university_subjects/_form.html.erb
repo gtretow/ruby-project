@@ -32,10 +32,10 @@
   </div>
 
   <div class="field form-group w-25">
-    <%= form.number_field :professor_id, id: :university_subject_professor_id, class: "form-control", value: current_user.id, type: :hidden  %>
+    <%= form.number_field :professor_id, id: :university_subject_professor_id, class: "form-control", value: current_professor.id, type: :hidden  %>
   </div>
 
   <div>
-    <%= form.submit 'Criar Nova Nota', class: 'btn btn-secondary' %>
+    <%= form.submit 'Finalizar', class: 'btn btn-secondary' %>
   </div>
 <% end %>

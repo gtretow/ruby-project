@@ -20,15 +20,15 @@
   </td>
 
   <td>
-    <%= link_to 'Exibir', university_subject %>
+    <%= link_to 'Exibir', university_subject, class: 'btn btn-primary' %>
   </td>
 
-  <% if university_subject.user == current_user %>
+  <% if university_subject.professor == current_professor %>
     <td>
-      <%= link_to 'Editar', edit_university_subject_path(university_subject) %>
+      <%= link_to 'Editar', edit_university_subject_path(university_subject), class: 'btn btn-secondary' %>
     </td>
-    <div>
-      <%= link_to 'Deletar', university_subject, method: :delete, data: { confirm: "Tem certeza que deseja deletar esta nota?" } %>
+    <td>
+      <%= link_to 'Deletar', university_subject, method: :delete, data: { confirm: "Tem certeza que deseja deletar esta nota?" }, class: 'btn btn-danger' %>
     </td>
   <% else %>
     <td></td>

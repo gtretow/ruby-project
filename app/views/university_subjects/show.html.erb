@@ -1,10 +1,20 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @university_subject %>
-
-<div>
-  <%= link_to "Edit this university subject", edit_university_subject_path(@university_subject) %> |
-  <%= link_to "Back to university subjects", university_subjects_path %>
-
-  <%= button_to "Destroy this university subject", @university_subject, method: :delete %>
+<div class="jumbotron">
+  <h3 class="font-weight-bold">RA Número:</h3>
+  <h4><%= @university_subject.student_code %></h4>
+  <h3 class="font-weight-bold">Responsável:</h3>
+  <h4><%= @university_subject.coordinator %></h4>
+  <h3 class="font-weight-bold">Bimestre:</h3>
+  <h4><%= @university_subject.bimester %></h4>
+  <h3 class="font-weight-bold">Nota: </h3>
+  <h4><%= @university_subject.grade %></h4>
+  <h3 class="font-weight-bold">Comentários:</h3>
+  <div>
+    <%= @university_subject.comment %> 
+  </div>
+  <hr class="my-4">
+  <p class="lead">
+    <%= link_to "Editar", edit_university_subject_path(@university_subject), class:"btn btn-secondary" %> |
+    <%= link_to "Voltar", university_subjects_path, class:"btn btn-secondary" %> | 
+    <%= button_to "Deletar", @university_subject, method: :delete, class:"btn btn-dark" %>
+  </p>
 </div>

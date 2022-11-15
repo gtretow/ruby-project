@@ -6,6 +6,12 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if professor_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Lançar nova nota", new_university_subject_path, class: "nav-link" %>
+          </li>
+        <% end %>
+
         <li class="nav-item">
           <%= link_to "Home", root_path, class: "nav-link"%>
         </li>
@@ -36,11 +42,7 @@
           </li>
         <% end %>
 
-        <% if professor_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "Lançar nova nota", new_university_subject_path, class: "nav-link" %>
-          </li>
-        <% end %>
+      
       </ul>
     </div>
   </div>

@@ -15,7 +15,7 @@ class UniversitySubjectsController < ApplicationController
   # GET /university_subjects/new
   def new
     #@university_subject = UniversitySubject.new
-    @university_subject = current_professor.university_subject.build
+    @university_subject = current_professor.university_subjects.build
   end
 
   # GET /university_subjects/1/edit
@@ -25,7 +25,7 @@ class UniversitySubjectsController < ApplicationController
   # POST /university_subjects or /university_subjects.json
   def create
     #@university_subject = UniversitySubject.new(university_subject_params)
-    @university_subject = current_professor.university_subject.build(university_subject_params)
+    @university_subject = current_professor.university_subjects.build(university_subject_params)
 
     respond_to do |format|
       if @university_subject.save
@@ -61,7 +61,7 @@ class UniversitySubjectsController < ApplicationController
     end
   end
 
-  def correct_user
+  def correct_professor
     @universitySubject = current_professor.university_subjects.find_by(id: params[:id])
     redirect_to university_subjecs, notice: "Não autorizado a editar esta nota" if @universitySubject.nil?
   end
