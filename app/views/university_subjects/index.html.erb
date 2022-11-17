@@ -13,7 +13,7 @@
   </thead>
 
   <tbody id="university_subjects">
-    <% @university_subjects.each do |university_subject| %>
+    <% @university_subjects.all.map do |university_subject| %>
       <tr></tr>
         <%= render university_subject %>
       <% end %>

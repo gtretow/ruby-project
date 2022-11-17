@@ -5,9 +5,16 @@ class UniversitySubjectsController < ApplicationController
  
   # GET /university_subjects or /university_subjects.json
   def index
-    #@university_subjects = UniversitySubject.select {|subject| subject.student_code.to_s.humanize == current_student.student_code.to_s.humanize}
-    #@university_subject = UniversitySubject.find_by(student_code: current_student.student_code.build)
-    @university_subjects = UniversitySubject.all
+
+    if student_signed_in?
+      @university_subjects = UniversitySubject.where(
+        student_code: current_student.student_code.to_s
+      )
+    else
+      @university_subjects = UniversitySubject.where(
+        professor_id: current_professor.id 
+      )
+    end
   end
 
   # GET /university_subjects/1 or /university_subjects/1.json
@@ -16,7 +23,6 @@ class UniversitySubjectsController < ApplicationController
 
   # GET /university_subjects/new
   def new
-    #@university_subject = UniversitySubject.new
     @university_subject = current_professor.university_subjects.build
   end
 
@@ -26,7 +32,6 @@ class UniversitySubjectsController < ApplicationController
 
   # POST /university_subjects or /university_subjects.json
   def create
-    #@university_subject = UniversitySubject.new(university_subject_params)
     @university_subject = current_professor.university_subjects.build(university_subject_params)
 
     respond_to do |format|
