@@ -2,9 +2,11 @@ class UniversitySubjectsController < ApplicationController
   before_action :set_university_subject, only: %i[ show edit update destroy ]
   before_action :authenticate_professor!, except: [:index, :show]
   before_action :correct_professor, only: [:edit, :update, :destroy]
-
+ 
   # GET /university_subjects or /university_subjects.json
   def index
+    #@university_subjects = UniversitySubject.select {|subject| subject.student_code.to_s.humanize == current_student.student_code.to_s.humanize}
+    #@university_subject = UniversitySubject.find_by(student_code: current_student.student_code.build)
     @university_subjects = UniversitySubject.all
   end
 

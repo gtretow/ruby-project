@@ -13,6 +13,8 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem "bootsnap", require: false
 gem 'devise', '~> 4.2'
+gem 'pry', '~> 0.14.1'
+gem 'rspec', '~> 3.4'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
