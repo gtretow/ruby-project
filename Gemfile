@@ -15,9 +15,12 @@ gem "bootsnap", require: false
 gem 'devise', '~> 4.2'
 gem 'pry', '~> 0.14.1'
 gem 'rspec', '~> 3.4'
+gem 'ffi', '~> 1.9', '>= 1.9.10'
+gem 'factory_bot', '~> 4.8', '>= 4.8.2'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'rspec-rails', '~> 5.0.0'
 end
 
 group :development do

@@ -12,19 +12,19 @@
   <% end %>
 
   <div class="field form-group w-25">
-    <%= form.text_field :student_code, class: "form-control", placeholder:"RA do aluno" %>
+    <%= form.text_field :student_code, required: true, required: true, label: true, class: "form-control", placeholder:"RA do aluno" %>
   </div>
 
   <div class="field form-group w-25">
-    <%= form.text_field :coordinator, class: "form-control", placeholder:"Responsável por aplicar a prova" %>
+    <%= form.text_field :coordinator, class: "form-control", required: true, label: true, placeholder:"Responsável por aplicar a prova" %>
   </div>
 
   <div class="field form-group w-25">
-    <%= form.text_field :bimester, class: "form-control", placeholder: "Bimestre" %>
+    <%= form.text_field :bimester, class: "form-control", required: true, label: true, placeholder: "Bimestre" %>
   </div>
 
   <div class="field form-group w-25">
-    <%= form.text_field :grade, class: "form-control", placeholder: "Nota" %>
+    <%= form.text_field :grade, class: "form-control", required: true, label: true, placeholder: "Nota" %>
   </div>
 
   <div class="field form-group w-25">
