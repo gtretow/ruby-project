@@ -3,9 +3,19 @@ class UniversitySubjectsController < ApplicationController
   before_action :authenticate_professor!, except: [:index, :show]
   before_action :correct_professor, only: [:edit, :update, :destroy]
  
-  # GET /university_subjects or /university_subjects.json
-  def index
 
+  '
+  Index => listagem GET VIEW
+  Show => detalhes do item GET VIEW
+  Edit => edição do item GET VIEW
+  
+  Create => criação POST
+  Update => edição PUT/PATCH
+  Delete => exclusão DELETE
+  '
+
+
+  def index
     if student_signed_in?
       @university_subjects = UniversitySubject.where(
         student_code: current_student.student_code.to_s
@@ -17,25 +27,16 @@ class UniversitySubjectsController < ApplicationController
     end
   end
 
-  # GET /university_subjects/1 or /university_subjects/1.json
-  def show
-  end
-
-  # GET /university_subjects/new
   def new
     @university_subject = current_professor.university_subjects.build
   end
 
-  # GET /university_subjects/1/edit
-  def edit
-  end
-
-  # POST /university_subjects or /university_subjects.json
   def create
     @university_subject = current_professor.university_subjects.build(university_subject_params)
 
     respond_to do |format|
       if @university_subject.save
+        ApplicationJob.perform_later()
         format.html { redirect_to university_subject_url(@university_subject), notice: "Nota criada com sucesso!" }
         format.json { render :show, status: :created, location: @university_subject }
       else
@@ -45,7 +46,6 @@ class UniversitySubjectsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /university_subjects/1 or /university_subjects/1.json
   def update
     respond_to do |format|
       if @university_subject.update(university_subject_params)
@@ -58,7 +58,6 @@ class UniversitySubjectsController < ApplicationController
     end
   end
 
-  # DELETE /university_subjects/1 or /university_subjects/1.json
   def destroy
     @university_subject.destroy
 
@@ -74,12 +73,10 @@ class UniversitySubjectsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_university_subject
       @university_subject = UniversitySubject.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def university_subject_params
       params.require(:university_subject).permit(:student_code, :coordinator, :bimester, :grade, :comment, :professor_id, :student_code)
     end
