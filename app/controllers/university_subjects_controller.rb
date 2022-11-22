@@ -2,41 +2,38 @@ class UniversitySubjectsController < ApplicationController
   before_action :set_university_subject, only: %i[ show edit update destroy ]
   before_action :authenticate_professor!, except: [:index, :show]
   before_action :correct_professor, only: [:edit, :update, :destroy]
- 
-
-  '
-  Index => listagem GET VIEW
-  Show => detalhes do item GET VIEW
-  Edit => edição do item GET VIEW
-  
-  Create => criação POST
-  Update => edição PUT/PATCH
-  Delete => exclusão DELETE
-  '
-
 
   def index
-    if student_signed_in?
-      @university_subjects = UniversitySubject.where(
-        student_code: current_student.student_code.to_s
-      )
-    if professor_signed_in?
-      @university_subjects = UniversitySubject.where(
-        professor_id: current_professor.id 
-      )
+    begin
+      if student_signed_in?
+        @university_subjects = UniversitySubject.where(
+          student_code: current_student.student_code.to_s
+        )
+      if professor_signed_in?
+        @university_subjects = UniversitySubject.where(
+          professor_id: current_professor.id 
+        )
+      end
+      else 
+        @university_subjects = UniversitySubject.where(
+          professor_id: 1
+        )
+      end
+    rescue Exception => e
+      puts e
     end
-    else 
-      @university_subjects = UniversitySubject.where(
-        professor_id: 1
-      )
-    end
+  
   end
 
   def show
   end
 
   def new
-    @university_subject = current_professor.university_subjects.build
+    begin
+      @university_subject = current_professor.university_subjects.build
+    rescue Exception => e
+      puts e
+    end
   end
 
   def create

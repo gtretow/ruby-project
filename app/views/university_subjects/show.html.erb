@@ -13,8 +13,10 @@
   </div>
   <hr class="my-4">
   <p class="lead">
-    <%= link_to "Editar", edit_university_subject_path(@university_subject), class:"btn btn-secondary" %> |
-    <%= link_to "Voltar", university_subjects_path, class:"btn btn-secondary" %> | 
-    <%= button_to "Deletar", @university_subject, method: :delete, class:"btn btn-dark" %>
+    <%= link_to "Voltar", university_subjects_path, class:"btn btn-secondary" %>  
+    <% if professor_signed_in? %>
+      | <%= link_to "Editar", edit_university_subject_path(@university_subject), class:"btn btn-secondary" %> |
+      <%= button_to "Deletar", @university_subject, method: :delete, class:"btn btn-dark" %>
+    <% end %>
   </p>
 </div>
