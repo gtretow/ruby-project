@@ -56,7 +56,7 @@ RSpec.describe UniversitySubjectsController, type: :controller do
             paramsError = {student_id: nil}
             sign_in(create(:professor))
             post :create, params: {university_subject: paramsError}
-            expect(response).to render_template("new")
+            expect(response.status).to be(302)
         end
 
     end
@@ -88,7 +88,7 @@ RSpec.describe UniversitySubjectsController, type: :controller do
         it 'should delete post ' do
             sign_in(newProfessor)
             delete :destroy, params: {id: deleteNotation.id}
-            expect(response.status).to eq 200
+            expect {deleteNotation.reload}.to raise_error
         end
     end
     
