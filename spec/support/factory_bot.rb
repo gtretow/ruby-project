@@ -1,7 +1,3 @@
-
-FactoryBot.define do
-    factory(:professor) do
-      email { "professor21@gmail.om" }
-      password { "123123" }
-    end
-  end
+RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
+end

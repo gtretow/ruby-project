@@ -20,11 +20,19 @@ class UniversitySubjectsController < ApplicationController
       @university_subjects = UniversitySubject.where(
         student_code: current_student.student_code.to_s
       )
-    else
+    if professor_signed_in?
       @university_subjects = UniversitySubject.where(
         professor_id: current_professor.id 
       )
     end
+    else 
+      @university_subjects = UniversitySubject.where(
+        professor_id: 1
+      )
+    end
+  end
+
+  def show
   end
 
   def new

@@ -16,7 +16,11 @@ gem 'devise', '~> 4.2'
 gem 'pry', '~> 0.14.1'
 gem 'rspec', '~> 3.4'
 gem 'ffi', '~> 1.9', '>= 1.9.10'
-gem 'factory_bot', '~> 4.8', '>= 4.8.2'
+#gem 'factory_bot', '~> 4.8', '>= 4.8.2'
+#gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
+gem 'factory_bot_rails', '~> 6.2'
+gem 'database_cleaner-active_record', '~> 1.8.0.beta'
+gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
