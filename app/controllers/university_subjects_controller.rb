@@ -20,7 +20,7 @@ class UniversitySubjectsController < ApplicationController
         )
       end
     rescue Exception => e
-      puts e
+      puts e.message
     end
   
   end
@@ -32,7 +32,7 @@ class UniversitySubjectsController < ApplicationController
     begin
       @university_subject = current_professor.university_subjects.build
     rescue Exception => e
-      puts e
+      puts e.message
     end
   end
 
